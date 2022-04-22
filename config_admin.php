@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,59 +33,46 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.php">Inicio</a></li>
-                    <?php if (isset($_SESSION["bandera"])) : ?>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="paginaprincipal.php">Página principal </a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="config_admin.php">Configuracion</a></li>
 
-                    <?php endif ?>
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.php">Acerca de</a></li>
-
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.php">Contacto</a></li>
                     <?php if (isset($_SESSION["bandera"])) : ?>
+
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="logout.php">Finalizar Sesión </a></li>
                     <?php else : ?>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login.php">Ingresar</a></li>
                     <?php endif ?>
                 </ul>
+
             </div>
         </div>
     </nav>
-    <section class="page-section cta">
+    <section class="page-section about-heading">
         <div class="container">
             <div class="row">
-                <div class="col-xl-9 mx-auto">
-                    <div class="cta-inner bg-faded text-center rounded">
-                        <h2 class="section-heading mb-5">
+                <div class="col-4">
 
-                            <span class="section-heading-lower">Contactos</span>
-                        </h2>
-                        <ul class="list-unstyled list-hours mb-5 text-left mx-auto">
-                            <li class="list-unstyled-item list-hours-item d-flex">
-                                Teléfono
-                                <span class="ms-auto">3203737333</span>
-                            </li>
-                            <li class="list-unstyled-item list-hours-item d-flex">
-                                Correo Electrónico
-                                <span class="ms-auto">enihpalechor@gmil.com</span>
-                            </li>
-                            <li class="list-unstyled-item list-hours-item d-flex">
-                                Direccion
-                                <span class="ms-auto">Popayán Cauca </span>
-                            </li>
+                    <a style="text-decoration: none;" href="cursos_admin.php">
+                        <div style="background:#F6E1C6;color:black;font-size: 15px;   padding: 1px;   border-radius: 5px;   
+                    margin-bottom: 5px;" class="card tarjetas servicios caja2">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="Imagenes/cursos.png" alt="..." />
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-7">
+                                    <br>
+                                    <span>Crear cursos</span>
 
-                        </ul>
+                                </div>
+                                <div class="col-1"></div>
+                            </div>
+                        </div>
 
-                        <p class="mb-0">
-                            <small><em>Call Anytime</em></small>
-                            <br />
-                            (320) 3737333
-                        </p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
     <footer class="footer text-faded text-center py-5">
         <div class="container">
             <p class="m-0 small">Copyright &copy; Your Website 2021</p>
@@ -97,3 +85,13 @@
 </body>
 
 </html>
+
+
+<?php
+if ($_SESSION["tipo_usuario"] != 1 ) {
+?>
+    <script type=""> window.location.href = "paginaprincipal.php";</script>;
+
+<?php
+}
+?>
