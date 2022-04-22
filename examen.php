@@ -3,12 +3,21 @@
 <head>
 	<title></title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style type="text/css">
+    body {
+  background-image:  url("assets/img/palabra.jpg");
+  
+  background-position: center;
+  
+}
+  </style>
 </head>
 <body>
 	<form onsubmit="return guardar(); "> 
 <?php 
                                  require_once "./db/conexion.php";
-                                $sql = "SELECT * FROM `pregunta_quiz` ";
+                                 $id_tema=$_GET['id_tema'];
+                                $sql = "SELECT * FROM `pregunta_quiz`WHERE id_tema=$id_tema;";
                                 $result = mysqli_query($con,$sql);
                                 $contador=0;
                                 
@@ -25,7 +34,7 @@
                                 while ($opcion = mysqli_fetch_assoc($result2)) { 
                                 	?>
                                 	<input type="radio" required="true" data-bandera="<?php echo $opcion['bandera'] ?>" value="<?php echo $opcion['id_opcion'] ?>" class="radio_input" name="radio <?php echo $opcion['id_pregunta'] ?>" data-id="<?php echo $opcion['id_pregunta'] ?>"><?php echo $opcion['nombre_opcion'] ?>
-                                	<?php } ?>
+                                	<br><?php } ?>
                             </div>
                         <?php } ?>
                         <button type="submit" >Enviar</button>

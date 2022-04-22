@@ -104,7 +104,7 @@
         <?php if ($contador%2!=0): ?>
     <div class="col-4"></div>  
     <?php endif ?>
-        <div class="col-4"> <a style="text-decoration: none;" href="resultadosjuego.php?id_tema=<?php    echo $_GET['id_tema'] ?>">
+        <div class="col-4"> <a style="text-decoration: none;" href="resultadosexamen.php?id_tema=<?php    echo $_GET['id_tema'] ?>&id_usuario=<?php echo $_SESSION['id_usuario'] ?>">
       <div class="card tarjetas" style="background:#F6E1C6;color:black;padding: 1px;   border-radius: 5px;   
      margin-bottom: 5px;font-size: 16px">         
             <div class="row">

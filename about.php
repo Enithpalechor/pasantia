@@ -20,8 +20,7 @@ session_start(); ?>
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">A Free Bootstrap Business Theme</span>
-                <span class="site-heading-lower">Business Casual</span>
+                <span class="site-heading-lower">Hábitos y Buenas Prácticas  de Seguridad </span>
             </h1>
         </header>
         <!-- Navigation-->
@@ -63,9 +62,7 @@ session_start(); ?>
                                 </h2>
                                 <p>Al generar hábitos y buenas prácticas de seguridad informática para el buen uso de la información  se pretende   minimizar el volumen  de riesgos a lo que  se puede estar expuesto, se brindan herramientas  preventivas para el uso de tecnologías y los servicios más utilizados por los usuarios, se abordaran los mecanismo de prevención que permiten la detección  de las amenazas más comunes. </p>
                                 <p class="mb-0">
-                                    We guarantee that you will fall in
-                                    <em>lust</em>
-                                    with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.
+                                    
                                 </p>
                             </div>
                         </div>

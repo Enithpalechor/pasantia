@@ -19,8 +19,8 @@
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">A Free Bootstrap Business Theme</span>
-                <span class="site-heading-lower">Business Casual</span>
+                 <span class="site-heading-lower">Hábitos y Buenas Practicas  de Seguridad </span>
+                
             </h1>
         </header>
         <!-- Navigation-->

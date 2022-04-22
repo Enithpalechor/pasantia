@@ -1,4 +1,3 @@
-
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,15 +17,10 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
-      
-    <?php if (!isset($_SESSION["bandera"])): ?>
- <script type=""> window.location.href = "login.php";</script>;     
-                       
- <?php endif ?>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                 <span class="site-heading-lower">Hábitos y Buenas Practicas  de Seguridad </span>
                 
-                <span class="site-heading-lower">Hábitos y Buenas Prácticas  de Seguridad </span>
             </h1>
         </header>
         <!-- Navigation-->
@@ -36,97 +30,83 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                          <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.php">Inicio</a></li>
-                          <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.php">Página Principal </a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.php">Inicio</a></li>
+                         <?php if (isset($_SESSION["bandera"])): ?>
+                              <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="paginaprincipal.php">Página principal </a></li>  
+                           
+                        <?php endif ?>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.php">Acerca de</a></li>
                         
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.php">Contacto</a></li>
-      <?php if ($_SESSION["bandera"]==true): ?>
+                         <?php if (isset($_SESSION["bandera"])): ?>
                               <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="logout.php">Finalizar Sesión </a></li>  
                         <?php else: ?>
                           <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login.php">Ingresar</a></li>    
-                        <?php endif ?>ul>
-      
+                        <?php endif ?>
+                    </ul>
                 </div>
             </div>
         </nav>
-        <section class="page-section about-heading">
+        <section class="page-section cta">
             <div class="container">
-                    <main role="main"id="clouds" class="container">
- 
-
-      <div class="container">
-       
-<div class="row">
-  
-   <?php 
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-5">
+                                
+                                <span class="section-heading-lower">Contactos</span>
+                            </h2>
+                            <table class="table list-unstyled list-hours mb-5 text-left mx-auto">
+                             <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Aciertos</th>
+                                 <th scope="col">Desaciertos</th>
+                                <th scope="col">Total preguntas</th>
+                                <th scope="col">Total porcentaje</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                <?php 
                                  require_once "./db/conexion.php";
-                                $sql = "SELECT * FROM temas";
+                                 $id_usuario=$_SESSION["id_usuario"];
+                                 
+                                 $id_tema=$_GET['id_tema'];
+                                $sql = "SELECT *,(correctas+incorrectas) AS total,(correctas*100)/(correctas+incorrectas) AS porcentje FROM `resultadosquiz`  WHERE id_tema=$id_tema AND id_usuario=$id_usuario;";
                                 $result = mysqli_query($con,$sql);
                                 $contador=0;
                                 while ($data = mysqli_fetch_assoc($result)) {
                                 $contador++;
                             ?>
-    
-    <div class="col-4">
+                              <tr>
+                              <th scope="row"><?php  echo $contador ?></th>
+                              <td><?php   echo $data["correctas"] ?></td>
+                               <td><?php   echo $data["incorrectas"] ?></td>
+                                <td><?php   echo $data["total"] ?></td>
+                                <td><?php   echo round($data["porcentje"],1) ?></td>
+                              </tr>
 
-      <a style="text-decoration: none;" href="subtemas.php?id_tema=<?php echo $data['id_tema'] ?>">
-      <div style="background:#F6E1C6;color:black;font-size: 15px;   padding: 1px;   border-radius: 5px;   
-     margin-bottom: 5px;" class="card tarjetas servicios caja2">            
-            <div class="row">
-              <div class="col-3">
-                <img src="<?php echo $data['imagen_tema'] ?>" style="width: 100px;height: 100px;">
-              </div>
-              <div class="col-1"></div>
-              <div class="col-7">
-                <br>
-  <span><?php echo $data["nombre_tema"]; ?></span>
-              
-              </div>
-              <div class="col-1"></div>
-           </div>
-         </div>
+                    <?php }  ?>
+                              </tbody>
+                           </table>
+                            <p class="address mb-5">
+                                <em>
+                            <a class="btn btn-primary" href="examen.php?id_tema=<?php  echo $id_tema ?>">jugar</a>
+                                   
+                                </em>
+                            </p>
+                            <p class="mb-0">
 
-         </a>
-    </div>
-    <?php if ($contador%2!=0): ?>
-    <div class="col-4"> 
-    
-    </div>  
-    <?php endif ?>
- 
-   
-<?php
-                                }
-                            ?> 
-    <div class="col-4">
-      <a href="resultadosjuegoahorcado.php" style="text-decoration: none;">
-      <div style="background: #F6E1C6;color:black;   padding: 1px;   border-radius: 5px;   
-  margin-bottom: 5px;" class="card ">            
-            <div class="row">
-              <div class="col-3">
-                <img src="<?php echo $data['imagen_tema'] ?>" style="width: 100px;height: 100px;">
-              </div>
-              <div class="col-1"></div>
-              <div class="col-7">
-                <br>
-  <span>juega y Aprende</span>
-              
-              </div>
-              <div class="col-1"></div>
-           </div>
-         </div>
-         </a>
-    </div>                       
-  </div>   
-
-      </div>
-      
-  
-   
-    </main>
+                                <small><em>Call Anytime</em></small>
+                                <br />
+                                (320) 3737333
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+        
         <footer class="footer text-faded text-center py-5">
             <div class="container"><p class="m-0 small">Copyright &copy; Your Website 2021</p></div>
         </footer>
