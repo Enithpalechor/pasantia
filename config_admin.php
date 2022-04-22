@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,12 +33,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.html">Inicio</a></li>
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="paginaprincipal.php">Página Principal </a></li>
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">Acerca de</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="config_admin.php">Configuracion</a></li>
 
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.html">Contacto</a></li>
                     <?php if (isset($_SESSION["bandera"])) : ?>
+
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="logout.php">Finalizar Sesión </a></li>
                     <?php else : ?>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login.php">Ingresar</a></li>
@@ -49,35 +48,29 @@
     </nav>
     <section class="page-section about-heading">
         <div class="container">
-            <?php
-            require_once "./db/conexion.php";
-            $sql = "SELECT * FROM contenido where id_subtema=" . $_GET["id_subtema"];
+            <div class="row">
+                <div class="col-4">
 
-            $result = mysqli_query($con, $sql);
-            $contador = 0;
-            while ($data = mysqli_fetch_assoc($result)) {
-                $contador++;
-            ?>
-                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="<?php echo $data['imagen_descripcion'] ?>" alt="..." />
-                <div class="about-heading-content">
-                    <div class="row">
-                        <div class="col-xl-9 col-lg-10 mx-auto">
-                            <div class="bg-faded rounded p-5">
-                                <h2 class="section-heading mb-4">
-                                    <span class="section-heading-upper"><?php echo $_GET["nombre_subtema"] ?></span>
+                    <a style="text-decoration: none;" href="cursos_admin.php">
+                        <div style="background:#F6E1C6;color:black;font-size: 15px;   padding: 1px;   border-radius: 5px;   
+                    margin-bottom: 5px;" class="card tarjetas servicios caja2">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="Imagenes/cursos.png" alt="..." />
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-7">
+                                    <br>
+                                    <span>Crear cursos</span>
 
-                                </h2>
-
-
-
-                                <p class="texto-justificado"><?php echo  $data["descripcion_contenido"] ?>.</p>
-
-
-                            <?php  } ?>
+                                </div>
+                                <div class="col-1"></div>
                             </div>
                         </div>
-                    </div>
+
+                    </a>
                 </div>
+            </div>
         </div>
     </section>
     <footer class="footer text-faded text-center py-5">
@@ -92,3 +85,13 @@
 </body>
 
 </html>
+
+
+<?php
+if ($_SESSION["tipo_usuario"] != 1 ) {
+?>
+    <script type=""> window.location.href = "paginaprincipal.php";</script>;
+
+<?php
+}
+?>
